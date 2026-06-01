@@ -1,3 +1,27 @@
+
+# 🛍️ React E-Commerce App
+
+A modern, fully responsive e-commerce web application built with React.
+Fast, clean, and ready to scale.
+
+## ✨ Features
+- 🛒 Shopping cart with real-time updates
+- 🔍 Product search & filtering
+- 📱 Fully responsive design
+- ⚡ Optimized performance with React hooks
+
+## 🚀 Getting Started
+```bash
+npm install
+npm start
+```
+
+## 🛠️ Built With
+React • JavaScript • CSS3
+
+## 📬 Contact
+Made with ❤️ — feel free to reach out!
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
