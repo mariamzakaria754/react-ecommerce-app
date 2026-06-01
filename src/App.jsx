@@ -1,0 +1,17 @@
+/* =========================================
+App.jsx
+========================================= */
+
+import AppRoutes from "@/routes/AppRoutes";
+
+import AuthProvider from "@/providers/AuthProvider";
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+  );
+}
+
+export default App;
