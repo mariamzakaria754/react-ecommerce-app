@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import AuthLayout from "@/sections/AuthSection/AuthLayout";
+import PageLoader from "@/pages/PageLoader";
 
 // ── Lazy imports ──────────────────────────────────────
 const HomePage = lazy(() => import("@/pages/HomePage"));
@@ -22,20 +23,7 @@ const LoginPage = lazy(() =>
   import("@/pages/Auth").then((m) => ({ default: m.LoginPage })),
 );
 
-// ── Loading fallback ───────────────────────────────────
-const PageLoader = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      minHeight: "60vh",
-    }}
-  >
-    <span>Loading...</span>
-  </div>
-);
-
+// ── Routes ────────────────────────────────────────────
 function AppRoutes() {
   return (
     <Suspense fallback={<PageLoader />}>
@@ -44,14 +32,17 @@ function AppRoutes() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+
           <Route element={<AuthLayout />}>
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Route>
+
           <Route path="/product/:slug" element={<ProductDetailsPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+
           <Route
             path="/account"
             element={
@@ -60,6 +51,7 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
+
           <Route path="/wishlist" element={<WishlistPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
