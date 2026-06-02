@@ -8,6 +8,7 @@ import {
 import { Container } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function NavbarMain() {
   const { t } = useLanguage();
@@ -29,9 +30,11 @@ function NavbarMain() {
         {/* ── MAIN ROW ── */}
         <div className="h-[70px] flex items-center justify-between gap-4 md:gap-28">
           {/* ── LOGO ── */}
-          <h1 className="shrink-0 font-inter font-bold text-3xl md:text-4xl whitespace-nowrap">
-            {t.logo}
-          </h1>
+          <Link to="/" className="shrink-0">
+            <h1 className="font-inter font-bold text-3xl md:text-4xl whitespace-nowrap">
+              {t.logo}
+            </h1>
+          </Link>
 
           <div className="hidden md:flex xl:hidden flex-1 justify-center">
             <div className="w-full max-w-[400px]">
@@ -55,7 +58,6 @@ function NavbarMain() {
           </div>
         </div>
 
-        {/* ── MOBILE SEARCH (< 768) ── */}
         <div className="md:hidden pb-3">
           <SearchBar />
         </div>

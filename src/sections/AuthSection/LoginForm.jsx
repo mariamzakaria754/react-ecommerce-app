@@ -16,7 +16,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const container = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.07 },
   },
 };
 
@@ -79,28 +79,22 @@ function LoginForm() {
   }
 
   const inputClass = `
-    w-full bg-transparent  border-b border-gray-300 py-3 outline-none
+    w-full bg-transparent border-b border-gray-300 py-3 outline-none
     transition-all duration-300 focus:border-[#DB4444] text-gray-900
-    ${isArabic ? "pr-10 pl-10 text-right" : "pl-10 pr-10 text-left "}
+    ${isArabic ? "pr-10 pl-10 text-right" : "pl-10 pr-10 text-left"}
   `;
-
   const iconClass = `absolute top-3 text-gray-400 ${isArabic ? "right-0" : "left-0"}`;
   const eyeClass = `absolute top-3 text-gray-400 ${isArabic ? "left-0" : "right-0"}`;
 
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="w-full"
-    >
+    <motion.div variants={container} className="w-full">
       {/* HEADER */}
       <motion.div variants={item} className="mb-7 font-inter">
-        <div className="inline-flex items-center gap-2 text-[#DB4444] text-sm ">
+        <div className="inline-flex items-center gap-2 text-[#DB4444] text-sm">
           <ShieldCheck size={16} />
           {t.secureLogin}
         </div>
-        <h1 className="mt-3 text-3xl sm:text-[34px] font-bold text-gray-900 mb-5 ">
+        <h1 className="mt-3 text-3xl sm:text-[34px] font-bold text-gray-900 mb-5">
           {t.welcomeBack}
         </h1>
         <p className="mt-2 text-gray-500 text-sm sm:text-base font-poppins">
@@ -108,7 +102,6 @@ function LoginForm() {
         </p>
       </motion.div>
 
-      {/* FORM */}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-8 font-poppins"
@@ -172,19 +165,13 @@ function LoginForm() {
           </button>
         </motion.div>
 
-        {/* BUTTON */}
+        {/* SUBMIT */}
         <motion.div variants={item}>
           <motion.button
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className="
-              w-full py-3 rounded-full
-              bg-[#DB4444] text-white font-medium
-              flex items-center justify-center gap-2
-              transition-all hover:opacity-90
-              disabled:opacity-60
-            "
+            className="w-full py-3 rounded-full bg-[#DB4444] text-white font-medium flex items-center justify-center gap-2 transition-all hover:opacity-90 disabled:opacity-60"
           >
             {isSubmitting ? (
               t.loggingIn

@@ -13,8 +13,6 @@ import { FiUser } from "react-icons/fi";
 
 import AccountDropdown from "@/components/common/AccountDropdown";
 
-/* ── Component ─────────────────────────────────────────────────────────── */
-
 function NavIcons() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,25 +27,23 @@ function NavIcons() {
   const isCartActive = location.pathname === "/cart";
   const isAccountActive = location.pathname === "/account" || accountOpen;
 
-  const badgeSide = isArabic ? "left-0.5 top-0.5" : "right-0.5 top-0.5";
-
   return (
-    <div className="flex items-center gap-1 lg:gap-1.5 relative">
+    <div className="flex items-center gap-3 lg:gap-4 relative">
       {/* ── Wishlist ── */}
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/wishlist")}
+        aria-label="Wishlist"
         className={`
-          relative flex items-center
+          relative flex items-center justify-center
           w-10 h-10 rounded-full
           transition-colors duration-200
           ${
             isWishlistActive
               ? "text-[#DB4444]"
-              : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+              : "text-gray-500 hover:text-[#DB4444] hover:bg-red-50"
           }
         `}
-        aria-label="Wishlist"
       >
         <motion.span
           whileHover={{ scale: 1.12 }}
@@ -68,10 +64,11 @@ function NavIcons() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 520, damping: 18 }}
             className={`
-              absolute ${badgeSide}
-              w-[15px] h-[15px]
+              absolute
+          ${isArabic ? "-left-2 -top-2" : "-right-2 -top-2"}
+              min-w-[18px] h-[18px] px-[3px]
               flex items-center justify-center
-              text-[8px] font-bold text-white
+              text-[9px] font-bold text-white
               bg-[#DB4444] rounded-full
               ring-2 ring-white
             `}
@@ -85,6 +82,7 @@ function NavIcons() {
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => navigate("/cart")}
+        aria-label="Cart"
         className={`
           relative flex items-center justify-center
           w-10 h-10 rounded-full
@@ -92,10 +90,9 @@ function NavIcons() {
           ${
             isCartActive
               ? "text-[#DB4444]"
-              : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
+              : "text-gray-500 hover:text-[#DB4444] hover:bg-red-50"
           }
         `}
-        aria-label="Cart"
       >
         <motion.span
           whileHover={{ y: -2 }}
@@ -111,8 +108,9 @@ function NavIcons() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 520, damping: 18 }}
             className={`
-              absolute ${badgeSide}
-              w-[18px] h-[18px]
+              absolute
+            ${isArabic ? "-left-2 -top-2" : "-right-2 -top-2"}
+              min-w-[18px] h-[18px] px-[3px]
               flex items-center justify-center
               text-[9px] font-bold text-white
               bg-[#DB4444] rounded-full
@@ -124,26 +122,26 @@ function NavIcons() {
         )}
       </motion.button>
 
-      {/* ── Thin divider ── */}
-      <span className="w-px h-5 bg-gray-200 mx-1 flex-shrink-0" />
+      {/* ── Divider ── */}
+      <span className="w-px h-5 bg-gray-200 flex-shrink-0" />
 
       {/* ── Account ── */}
       <div className="relative">
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => setAccountOpen((p) => !p)}
+          aria-label="Account"
+          aria-expanded={accountOpen}
           className={`
             relative flex items-center justify-center
             w-10 h-10 rounded-full
             transition-all duration-200
             ${
               isAccountActive
-                ? "bg-[#DB4444] border-[#DB4444] text-white"
-                : "border-gray-300 text-gray-500 hover:border-[#DB4444] hover:text-[#DB4444] hover:bg-red-50"
+                ? "bg-[#DB4444] text-white"
+                : "text-gray-500 hover:text-[#DB4444] hover:bg-red-50"
             }
           `}
-          aria-label="Account"
-          aria-expanded={accountOpen}
         >
           <motion.span
             whileHover={!isAccountActive ? { scale: 1.1 } : {}}

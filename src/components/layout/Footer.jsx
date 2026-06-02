@@ -9,6 +9,7 @@ import appStore from "@/assets/images/app-store.png";
 
 import { Container } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const { t } = useLanguage();
@@ -45,9 +46,11 @@ function Footer() {
           >
             {/* ── COL 1: Logo + Subscribe ── */}
             <div className="space-y-5 sm:col-span-2 xl:col-span-1 2xl:col-span-1">
-              <h2 className="font-inter text-3xl font-bold tracking-wide">
-                {t.logo}
-              </h2>
+              <Link to="/" className="shrink-0">
+                <h2 className="font-inter text-3xl font-bold tracking-wide">
+                  {t.logo}
+                </h2>
+              </Link>
 
               <h3 className="font-medium text-xl font-poppins">
                 {t.subscribe}

@@ -26,7 +26,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const container = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.07, delayChildren: 0.1 },
+    transition: { staggerChildren: 0.07 },
   },
 };
 
@@ -104,20 +104,14 @@ function SignupForm() {
     text-gray-900 focus:border-[#DB4444] transition-all duration-200
     ${isArabic ? "pr-10 pl-10 text-right" : "pl-10 pr-10 text-left"}
   `;
-
   const iconClass = `absolute top-3 text-gray-400 ${isArabic ? "right-0" : "left-0"}`;
   const eyeClass = `absolute top-3 text-gray-400 ${isArabic ? "left-0" : "right-0"}`;
 
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="visible"
-      className="w-full "
-    >
+    <motion.div variants={container} className="w-full">
       {/* HEADER */}
-      <motion.div variants={item} className="mb-7">
-        <div className="inline-flex items-center gap-2 text-[#DB4444] text-sm">
+      <motion.div variants={item} className="mb-2">
+        <div className="inline-flex items-center gap-2 text-[#DB4444] text-sm ">
           <Sparkles size={16} />
           {t.createAccount}
         </div>
@@ -234,13 +228,7 @@ function SignupForm() {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isSubmitting}
-            className="
-              w-full py-3 rounded-full
-              bg-[#DB4444] text-white font-medium
-              flex items-center justify-center gap-2
-              transition-all hover:opacity-90
-              disabled:opacity-60
-            "
+            className="w-full py-3 rounded-full bg-[#DB4444] text-white font-medium flex items-center justify-center gap-2 transition-all hover:opacity-90 disabled:opacity-60"
           >
             {isSubmitting ? (
               t.creating
@@ -262,12 +250,7 @@ function SignupForm() {
             type="button"
             onClick={handleGoogleSignup}
             disabled={googleLoading}
-            className="
-              w-full py-3 border border-gray-300 rounded-full font-poppins
-              flex items-center justify-center gap-2
-              text-gray-700 hover:bg-gray-50
-              transition disabled:opacity-60
-            "
+            className="w-full py-3 border border-gray-300 rounded-full font-poppins flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 transition disabled:opacity-60"
           >
             <img
               src="https://www.svgrepo.com/show/475656/google-color.svg"

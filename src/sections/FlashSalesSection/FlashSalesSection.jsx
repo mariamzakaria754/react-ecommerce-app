@@ -18,7 +18,6 @@ function FlashSalesSection() {
     >
       {/* HEADER */}
       <Container>
-        <FlashHeader />
         <FlashSlider />
       </Container>
     </section>

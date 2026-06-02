@@ -1,21 +1,24 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
 
 import "swiper/css";
-import "swiper/css/navigation";
 
 import { getFlashProducts } from "@/data/products";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import { ProductCard } from "@/components/common";
 import { useLanguage } from "@/context/LanguageContext";
+import FlashHeader from "./FlashHeader";
 
 function FlashSlider({ searchTerm = "" }) {
   const { t } = useLanguage();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
+
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
 
   useEffect(() => {
     let mounted = true;
@@ -87,6 +90,8 @@ function FlashSlider({ searchTerm = "" }) {
 
   return (
     <section className="relative">
+      <FlashHeader prevRef={prevRef} nextRef={nextRef} />
+
       <AnimatePresence mode="wait">
         {!showAll ? (
           <motion.div
@@ -97,7 +102,14 @@ function FlashSlider({ searchTerm = "" }) {
           >
             <Swiper
               modules={[Navigation]}
-              navigation
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              }}
+              onBeforeInit={(swiper) => {
+                swiper.params.navigation.prevEl = prevRef.current;
+                swiper.params.navigation.nextEl = nextRef.current;
+              }}
               speed={800}
               grabCursor
               className="mt-10 pb-5"
