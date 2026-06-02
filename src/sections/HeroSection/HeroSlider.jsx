@@ -5,10 +5,12 @@ import { useLanguage } from "@/context/LanguageContext";
 
 import HeroSlide from "./HeroSlide";
 import iphoneImage from "@/assets/images/iphone.png";
-import gamingImage from "@/assets/images/gaming.jpg";
-import fashionImage from "@/assets/images/fashion.jpg";
-import speakerImage from "@/assets/images/speaker.jpg";
-import perfumeImage from "@/assets/images/perfume.jpg";
+import gamingImage from "@/assets/images/main-controller.png";
+
+import fashionImage from "@/assets/images/coat.png";
+
+import speakerImage from "@/assets/images/cooler.png";
+import perfumeImage from "@/assets/images/perfume.png";
 
 /*
   ─── FIX 1: بدلنا blur من الـ transition عشان يبطل التقطيع ───────

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { getServices } from "@/data/services";
+import { useEffect, useState } from "react";
 
 export function useServices() {
   const [services, setServices] = useState([]);
