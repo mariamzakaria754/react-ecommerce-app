@@ -1,5 +1,5 @@
 import deliveryIcon from "@/assets/images/icon-delivery.svg";
-import customerServiceIcon from "@/assets/images/icon-service.svg";
+import customerServiceIcon from "@/assets/images/service.svg";
 import secureIcon from "@/assets/images/icon-secure.svg";
 
 const servicesData = [

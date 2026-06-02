@@ -5,8 +5,9 @@ import StatsSection from "@/sections/AboutSection/StatsSection";
 import TeamSection from "@/sections/AboutSection/TeamSection";
 
 import { Breadcrumb } from "@/components/common";
-import ServicesSection from "@/sections/ServicesSection/ServicesSection";
+
 import { useLanguage } from "@/context/LanguageContext";
+import ServicesSection from "@/sections/ServicesSection/ServicesSection";
 
 function AboutPage() {
   const { t } = useLanguage();
