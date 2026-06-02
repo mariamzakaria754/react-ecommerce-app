@@ -5,10 +5,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
   theme: {
-    // ─────────────────────────────────────────────────────────────
-    // CONTAINER  →  استخدمي <div className="container"> بدل
-    //               max-w-8xl mx-auto px-4 في كل مكان
-    // ─────────────────────────────────────────────────────────────
     container: {
       center: true,
       padding: {
@@ -42,21 +38,16 @@ export default {
       // MAX WIDTHS
       // ─────────────────────────────────────────────────────────
       maxWidth: {
-        container: "1440px", // نفس الـ 2xl
+        container: "1440px",
         "8xl": "1600px",
         "9xl": "1800px",
       },
 
-      // ─────────────────────────────────────────────────────────
-      // SPACING  —  للـ sections والـ gaps المتكررة
-      // استخدام: mt-section  /  py-section-lg
-      // ─────────────────────────────────────────────────────────
       spacing: {
         // sections vertical rhythm
         section: "80px",
         "section-lg": "120px",
 
-        // navbar height — استخدميها في top offset
         navbar: "70px",
         topbar: "36px",
         "navbar-full": "106px", // topbar + navbar
@@ -118,7 +109,7 @@ export default {
       colors: {
         // ── Brand ──────────────────────────────────────────────
         brand: {
-          DEFAULT: "#DB4444", // اللون الأحمر الأساسي للموقع
+          DEFAULT: "#DB4444",
           light: "#E07575",
           dark: "#B03535",
         },
@@ -133,7 +124,6 @@ export default {
         textSecondary: "#828FA3",
         textWhite: "#FFFFFF",
 
-        // ── Legacy (احتفظي بيها عشان مش تتكسر الـ components) ──
         primaryCustom: "#635FC7",
         primaryLight: "#A8A4FF",
 

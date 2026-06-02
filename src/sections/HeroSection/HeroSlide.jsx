@@ -3,12 +3,10 @@ import { HiOutlineArrowRight } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
-/* ─── Animation variants ─────────────────────────────────────────────── */
 const containerVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
 };
-
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   show: {
@@ -17,7 +15,6 @@ const fadeUp = {
     transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
 const fadeLeft = {
   hidden: { opacity: 0, x: -22 },
   show: {
@@ -26,7 +23,6 @@ const fadeLeft = {
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };
-
 const imagePop = {
   hidden: { opacity: 0, scale: 0.88, y: 18 },
   show: {
@@ -37,37 +33,30 @@ const imagePop = {
   },
 };
 
-/* ─── Component ──────────────────────────────────────────────────────── */
 function HeroSlide({ slide }) {
   const { t } = useLanguage();
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-[#0c0c0e]">
       {/* ── BACKGROUND ── */}
-
-      {/* Red glow — top-right */}
       <div
         className="pointer-events-none absolute -right-10 -top-10 rounded-full"
         style={{
-          width: "clamp(180px, 30vw, 340px)",
-          height: "clamp(180px, 30vw, 340px)",
+          width: "clamp(160px,28vw,340px)",
+          height: "clamp(160px,28vw,340px)",
           background:
             "radial-gradient(circle, rgba(219,68,68,0.22) 0%, transparent 70%)",
         }}
       />
-
-      {/* Soft glow — bottom-left */}
       <div
         className="pointer-events-none absolute -bottom-10 -left-10 rounded-full"
         style={{
-          width: "clamp(140px, 22vw, 240px)",
-          height: "clamp(140px, 22vw, 240px)",
+          width: "clamp(120px,20vw,240px)",
+          height: "clamp(120px,20vw,240px)",
           background:
             "radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%)",
         }}
       />
-
-      {/* Grid overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
@@ -80,28 +69,24 @@ function HeroSlide({ slide }) {
       {/* ── INNER WRAPPER ── */}
       <div
         className="
-          relative z-10 h-full w-full
-          flex flex-col lg:flex-row
-          items-center justify-between
-          px-5 py-7
-          sm:px-10 sm:py-10
-          md:px-14 md:py-12
-          xl:px-20 xl:py-16
-          gap-6 lg:gap-12
-        "
+        relative z-10 h-full w-full
+        flex flex-col lg:flex-row items-center justify-between
+        px-5 py-6
+        sm:px-8 sm:py-8
+        md:px-12 md:py-10
+        xl:px-20 xl:py-16
+        gap-4 sm:gap-6 md:gap-8 lg:gap-12
+      "
       >
         {/* ── IMAGE SIDE ── */}
         <motion.div
           variants={imagePop}
           initial="hidden"
           animate="show"
-          className="
-            relative flex items-center justify-center flex-shrink-0
-            w-full lg:w-[44%] lg:order-last
-          "
+          className="relative flex items-center justify-center flex-shrink-0 w-full lg:w-[44%] lg:order-last"
           style={{ willChange: "transform, opacity" }}
         >
-          {/* Radial glow behind product */}
+          {/* Glow behind image */}
           <div
             className="pointer-events-none absolute inset-[8%] rounded-full"
             style={{
@@ -110,8 +95,7 @@ function HeroSlide({ slide }) {
             }}
           />
 
-          {/* ── Orbital rings ── */}
-          {/* Ring 1 */}
+          {/* Ring 1 — كبير */}
           <div
             className="absolute rounded-full"
             style={{
@@ -121,7 +105,6 @@ function HeroSlide({ slide }) {
               animation: "heroSpin 22s linear infinite",
             }}
           >
-            {/* Dot on ring */}
             <div
               className="absolute left-1/2 top-[4%] -translate-x-1/2 rounded-full"
               style={{
@@ -133,7 +116,7 @@ function HeroSlide({ slide }) {
             />
           </div>
 
-          {/* Ring 2 */}
+          {/* Ring 2 — معاكس */}
           <div
             className="absolute rounded-full"
             style={{
@@ -144,7 +127,7 @@ function HeroSlide({ slide }) {
             }}
           />
 
-          {/* Ring 3 */}
+          {/* Ring 3 — أحمر */}
           <div
             className="absolute rounded-full"
             style={{
@@ -155,67 +138,59 @@ function HeroSlide({ slide }) {
             }}
           />
 
-          {/* Product image — continuous float + gentle sway */}
+          {/* ── Product image — float animation ── */}
           <motion.img
             src={slide.image}
             alt={slide.title}
             animate={{
-              y: [0, -14, 0],
-              rotate: [0, 1.2, -1.2, 0],
+              y: [0, -12, 0],
+              rotate: [0, 1, -1, 0],
               filter: [
-                "drop-shadow(0 24px 64px rgba(0,0,0,0.55)) drop-shadow(0 0 0px rgba(219,68,68,0))",
-                "drop-shadow(0 32px 72px rgba(0,0,0,0.65)) drop-shadow(0 0 40px rgba(219,68,68,0.15))",
-                "drop-shadow(0 24px 64px rgba(0,0,0,0.55)) drop-shadow(0 0 0px rgba(219,68,68,0))",
+                "drop-shadow(0 20px 56px rgba(0,0,0,0.5))",
+                "drop-shadow(0 28px 64px rgba(0,0,0,0.6)) drop-shadow(0 0 30px rgba(219,68,68,0.12))",
+                "drop-shadow(0 20px 56px rgba(0,0,0,0.5))",
               ],
             }}
-            transition={{
-              duration: 4.5,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "loop",
-            }}
+            transition={{ duration: 4.5, ease: "easeInOut", repeat: Infinity }}
             whileHover={{
               scale: 1.06,
               rotate: -2,
-              transition: { duration: 0.35, ease: "easeOut" },
+              transition: { duration: 0.35 },
             }}
             className="
               relative z-10 w-auto object-contain mx-auto
-              h-[170px] sm:h-[210px] md:h-[240px] lg:h-[270px] xl:h-[360px] 2xl:h-[420px]
-              py-2 px-3 xl:py-5 xl:px-6
+              h-[150px]
+              sm:h-[190px]
+              md:h-[220px]
+              lg:h-[260px]
+              xl:h-[340px]
+              2xl:h-[400px]
+              py-2 px-3
+              sm:py-3 sm:px-4
+              xl:py-5 xl:px-6
             "
           />
 
-          {/* Floating info badge */}
+          {/* ── Floating badge ── */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.72,
-              duration: 0.5,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-              absolute bottom-4 right-2 z-20
-              flex items-center gap-3
-              rounded-xl px-3 py-2.5
-              border border-white/10
-              bg-white/5
-            "
+            transition={{ delay: 0.72, duration: 0.5 }}
+            className="absolute bottom-3 right-1 z-20 hidden sm:flex items-center gap-2.5 rounded-xl px-3 py-2 border border-white/10 bg-white/5"
             style={{ backdropFilter: "blur(12px)" }}
           >
             <div
-              className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg"
+              className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg"
               style={{ background: "rgba(219,68,68,0.15)" }}
             >
-              <span className="text-[#DB4444] text-sm">✦</span>
+              <span className="text-[#DB4444] text-xs">✦</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-[12px] font-medium text-white/80 leading-none mb-1">
-                Available Now
+              <span className="text-[11px] font-medium text-white/80 leading-none mb-1">
+                {t.availableNow ?? "Available Now"}
               </span>
-              <span className="text-[11px] text-white/35 leading-none">
-                Free 2-day delivery
+              <span className="text-[10px] text-white/35 leading-none">
+                {t.freeDelivery}
               </span>
             </div>
           </motion.div>
@@ -232,16 +207,9 @@ function HeroSlide({ slide }) {
           {/* Badge */}
           <motion.div
             variants={fadeUp}
-            className="mb-4 md:mb-5 flex items-center justify-center lg:justify-start gap-2.5"
+            className="mb-3 md:mb-4 xl:mb-5 flex items-center justify-center lg:justify-start gap-2.5"
           >
-            <span
-              className="
-                flex items-center gap-2
-                rounded-full border border-white/12 bg-white/5
-                px-3.5 py-1.5
-              "
-            >
-              {/* Pulse dot */}
+            <span className="flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-3 py-1 sm:px-3.5 sm:py-1.5">
               <span className="relative flex h-[6px] w-[6px] flex-shrink-0">
                 <span
                   className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60"
@@ -252,12 +220,10 @@ function HeroSlide({ slide }) {
                   style={{ background: "#DB4444" }}
                 />
               </span>
-
               {slide.isApple && (
-                <AiFillApple className="h-3.5 w-3.5 text-white/60" />
+                <AiFillApple className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white/60" />
               )}
-
-              <span className="text-[10px] font-medium tracking-[0.14em] text-white/50 uppercase">
+              <span className="text-[9px] sm:text-[10px] font-medium tracking-[0.14em] text-white/50 uppercase">
                 {slide.subtitle}
               </span>
             </span>
@@ -268,108 +234,57 @@ function HeroSlide({ slide }) {
             variants={fadeLeft}
             className="font-bold leading-[1.06] tracking-[-0.04em] text-white"
             style={{
-              fontSize: "clamp(1.5rem, 3.8vw, 3.1rem)",
+              fontSize: "clamp(1.3rem,3.5vw,3.1rem)",
               textShadow: "0 4px 40px rgba(0,0,0,0.4)",
-              fontFamily: "'Syne', sans-serif",
             }}
           >
             {slide.title}
           </motion.h2>
 
-          {/* Accent divider */}
+          {/* Divider */}
           <motion.div
             variants={fadeUp}
-            className="my-4 xl:my-5 mx-auto lg:mx-0"
+            className="my-3 md:my-4 xl:my-5 mx-auto lg:mx-0"
             style={{
-              width: 44,
+              width: 40,
               height: 2,
               background: "linear-gradient(90deg, #DB4444, transparent)",
               borderRadius: 2,
             }}
           />
 
-          {/* Description — optional, falls back gracefully if slide.description is undefined */}
-          {slide.description && (
-            <motion.p
-              variants={fadeUp}
-              className="
-                mb-6 max-w-[340px] mx-auto lg:mx-0
-                text-[13px] leading-relaxed text-white/40
-              "
-            >
-              {slide.description}
-            </motion.p>
-          )}
-
-          {/* CTA row */}
+          {/* CTA */}
           <motion.div
             variants={fadeUp}
-            className="flex items-center justify-center lg:justify-start gap-4"
+            className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4"
           >
             <button
               className="
-                group inline-flex items-center gap-2.5
+                group inline-flex items-center gap-2
                 rounded-full bg-white font-semibold text-[#0c0c0e]
-                text-[13px] px-5 py-2.5
+                text-[12px] sm:text-[13px]
+                px-4 py-2 sm:px-5 sm:py-2.5 xl:px-6 xl:py-3
                 transition-all duration-300
-                hover:bg-[#DB4444] hover:text-white
-                hover:gap-4
+                hover:bg-[#DB4444] hover:text-white hover:gap-3
               "
-              style={{ boxShadow: "0 0 0 0 rgba(219,68,68,0)" }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.boxShadow =
                   "0 0 28px rgba(219,68,68,0.38)")
               }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.boxShadow = "0 0 0 0 rgba(219,68,68,0)")
-              }
+              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
             >
               {t.shopNow}
               <HiOutlineArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
             </button>
 
-            <button
-              className="
-                text-[13px] text-white/35 underline underline-offset-4
-                decoration-white/15 transition-colors duration-200
-                hover:text-white/65 hover:decoration-white/35
-                bg-transparent border-0 cursor-pointer
-              "
-            >
+            <button className="text-[11px] sm:text-[13px] text-white/35 underline underline-offset-4 decoration-white/15 transition-colors hover:text-white/65 bg-transparent border-0 cursor-pointer">
               {t.learnMore ?? "Learn more"}
             </button>
           </motion.div>
-
-          {/* Stat pills — optional */}
-          {slide.stats && (
-            <motion.div
-              variants={fadeUp}
-              className="mt-7 flex items-center gap-5 justify-center lg:justify-start"
-            >
-              {slide.stats.map((s, i) => (
-                <div key={i} className="flex flex-col gap-[3px]">
-                  <span
-                    className="font-bold leading-none text-white"
-                    style={{
-                      fontSize: "clamp(1rem, 2vw, 1.35rem)",
-                      fontFamily: "'Syne', sans-serif",
-                    }}
-                  >
-                    {s.value}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-[0.1em] text-white/30">
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-          )}
         </motion.div>
       </div>
 
-      {/* ── Spin keyframe injection ── */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
         @keyframes heroSpin {
           from { transform: rotate(0deg); }
           to   { transform: rotate(360deg); }

@@ -8,7 +8,7 @@ function HeroSection() {
     <section
       className="
         w-full
-        pt-4 sm:pt-6 md:pt-2
+        pt-0
         xl:pt-0
       "
     >
@@ -19,9 +19,11 @@ function HeroSection() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="flex gap-8 2xl:gap-12 items-start"
         >
+          {/* Sidebar — desktop only */}
           <CategoriesSidebar />
 
-          <div className="flex-1 min-w-0 pt-6 xl:pt-10">
+          {/* Slider */}
+          <div className="flex-1 min-w-0 pt-4 md:pt-6 xl:pt-10">
             <HeroSlider />
           </div>
         </motion.div>

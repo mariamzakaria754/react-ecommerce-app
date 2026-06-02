@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 import { useLanguage } from "@/context/LanguageContext";
@@ -6,22 +6,12 @@ import { useLanguage } from "@/context/LanguageContext";
 import HeroSlide from "./HeroSlide";
 import iphoneImage from "@/assets/images/iphone.png";
 import gamingImage from "@/assets/images/main-controller.png";
-
 import fashionImage from "@/assets/images/coat.png";
-
 import speakerImage from "@/assets/images/cooler.png";
 import perfumeImage from "@/assets/images/perfume.png";
 
-/*
-  ─── FIX 1: بدلنا blur من الـ transition عشان يبطل التقطيع ───────
-  blur على GPU بيسبب repaint ثقيل — بدلناه بـ opacity + x بس
-  ─────────────────────────────────────────────────────────────────
-*/
 const slideVariants = {
-  enter: (dir) => ({
-    x: dir > 0 ? "4%" : "-4%",
-    opacity: 0,
-  }),
+  enter: (dir) => ({ x: dir > 0 ? "4%" : "-4%", opacity: 0 }),
   center: {
     x: 0,
     opacity: 1,
@@ -47,15 +37,11 @@ const ArrowButton = ({ onClick, label, children }) => (
     whileHover={{ scale: 1.08, backgroundColor: "rgba(255,255,255,1)" }}
     whileTap={{ scale: 0.93 }}
     className="
-      hidden md:flex
-      h-11 w-11 items-center justify-center
-      rounded-full
-      bg-white/12 text-white
-      backdrop-blur-md
-      border border-white/15
+      hidden md:flex h-11 w-11 items-center justify-center
+      rounded-full bg-white/12 text-white
+      backdrop-blur-md border border-white/15
       shadow-[0_4px_20px_rgba(0,0,0,0.2)]
-      transition-colors duration-200
-      hover:text-black z-30
+      transition-colors duration-200 hover:text-black z-30
     "
   >
     {children}
@@ -66,20 +52,18 @@ function HeroSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
+  const [navbarHeight, setNavbarHeight] = useState(106);
   const { t } = useLanguage();
 
-  const [navbarHeight, setNavbarHeight] = useState(106);
-
+  /* ── حساب ارتفاع الـ navbar ديناميكياً ── */
   useEffect(() => {
     const navbar = document.querySelector("header");
-    const topbar = document.querySelector("header")?.previousElementSibling;
-
+    const topbar = navbar?.previousElementSibling;
     const measure = () => {
-      const h1 = navbar?.offsetHeight || 70;
-      const h2 = topbar?.offsetHeight || 36;
-      setNavbarHeight(h1 + h2);
+      setNavbarHeight(
+        (navbar?.offsetHeight || 70) + (topbar?.offsetHeight || 36),
+      );
     };
-
     measure();
     const ro = new ResizeObserver(measure);
     if (navbar) ro.observe(navbar);
@@ -124,16 +108,14 @@ function HeroSlider() {
     [t],
   );
 
-  const goTo = (index) => {
-    setDirection(index > activeSlide ? 1 : -1);
-    setActiveSlide(index);
+  const goTo = (i) => {
+    setDirection(i > activeSlide ? 1 : -1);
+    setActiveSlide(i);
   };
-
   const next = () => {
     setDirection(1);
     setActiveSlide((p) => (p === slides.length - 1 ? 0 : p + 1));
   };
-
   const prev = () => {
     setDirection(-1);
     setActiveSlide((p) => (p === 0 ? slides.length - 1 : p - 1));
@@ -154,15 +136,25 @@ function HeroSlider() {
       <div
         className="
           relative w-full rounded-2xl overflow-hidden
-          bg-black
-          border border-white/8
+          bg-black border border-white/8
           shadow-[0_24px_80px_rgba(0,0,0,0.25)]
         "
         style={{
-          minHeight: `calc(100svh - ${navbarHeight}px)`,
+          /*
+            ─── الارتفاع بيتدرج حسب الشاشة ────────────────────────
+            Desktop  (xl+) : 100svh ناقص الـ navbar — يملا الشاشة
+            Tablet   (md)  : 520px كافية للصورة والمحتوى
+            Mobile   (<md) : 480px
+            ────────────────────────────────────────────────────────
+          */
+          minHeight:
+            window.innerWidth >= 1280
+              ? `calc(100svh - ${navbarHeight}px)`
+              : window.innerWidth >= 768
+                ? "520px"
+                : "480px",
         }}
       >
-        {/* ── SLIDES ── */}
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
             key={slides[activeSlide].id}
@@ -171,10 +163,6 @@ function HeroSlider() {
             initial="enter"
             animate="center"
             exit="exit"
-            /*
-              will-change: transform  ← بيخبر المتصفح يحجز GPU layer
-              بيمنع الـ repaint وبيخلي الأنيميشن أسلس
-            */
             style={{ willChange: "transform, opacity" }}
             className="absolute inset-0"
           >
